@@ -21,8 +21,10 @@ class LeagueGrind(object):
 	def update_player(self, playerName):
 		player = self.riotWatcher.get_summoner(name=playerName)
 		playerID = player['id']
-		match_list = self.riotWatcher.get_match_list(playerID,region='na')
-		matches = [Match(playerID,self.riotWatcher,f) for f in match_list['matches'] if f['season']=='SEASON2016']
+		match_list = self.riotWatcher.get_match_list(playerID,region='na',season='SEASON2016')
+		
+		if raw_input("Get Match Data? yes/no\n") == "yes":
+			matches = [Match(playerID,self.riotWatcher,f) for f in match_list['matches']]
 		
 
 LeagueGrind("League Grinds").update_player("toolbox97")
