@@ -1,5 +1,5 @@
 class Match(object):
-	def __init__(self, riotWatcher, data):
+	def __init__(self, playerID, riotWatcher, data):
 		self.lane = data['lane']
 		self.championID = data['champion']
 		self.matchID = data['matchId']
@@ -12,7 +12,7 @@ class Match(object):
 		# Assists
 		# Deaths
 		
-		for f in x:
+		for f in matchdata:
 			print f
 		assert(False)
 		

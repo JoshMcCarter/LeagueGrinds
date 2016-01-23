@@ -16,13 +16,13 @@ class LeagueGrind(object):
 		self.spreadsheet = gc.open("League Grinds")
 		
 		#Establish Riot API Connection
-		self.riotWatcher = RiotWatcher(getDevKey())
-		
+		self.riotWatcher = RiotWatcher(getDevKey())		
 		
 	def update_player(self, playerName):
 		player = self.riotWatcher.get_summoner(name=playerName)
-		match_list = self.riotWatcher.get_match_list(player['id'],region='na')
-		matches = [Match(self.riotWatcher,f) for f in match_list['matches'] if f['season'] == 'SEASON2016']
+		playerID = player['id']
+		match_list = self.riotWatcher.get_match_list(playerID,region='na')
+		matches = [Match(playerID,self.riotWatcher,f) for f in match_list['matches'] if f['season']=='SEASON2016']
 		
 
 LeagueGrind("League Grinds").update_player("toolbox97")
